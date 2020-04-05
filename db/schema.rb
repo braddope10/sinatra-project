@@ -11,6 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20200405220220) do
+
+  create_table "pokemon", force: :cascade do |t|
+    t.string  "name"
+    t.string  "nickname"
+    t.integer "level"
+    t.integer "user_id"
+  end
+
+  create_table "type", force: :cascade do |t|
+    t.string  "name"
+    t.integer "pokemon_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "username"
+    t.string "password_digest"
+  end
 
 end
