@@ -4,10 +4,27 @@ class UsersController < ApplicationController
         erb :'users/signup'
     end
 
-    post '/users' do
+    get '/login' do
+        erb :'users/login'
+    end
+
+    post '/login' do
+        @user = User.find_by(username: params[:username])
+        if @user && @user.authenticate(params[:password]) #has_secure_password and bcrypt
+            session[:user_id] = @user.id
+        else
+            
+        end
+    end
+
+    post '/signup' do
         user = User.create(params) #the @user instance variable would only be needed if you need to access it in the view
-        session[:user_id] = user.id
-        redirect to "/users/#{user.id}"
+        if user.valid?
+            session[:user_id] = user.id
+            redirect to "/users/#{user.id}"
+        else
+            redirect to '/signup'
+        end
     end
 
     get '/users/:id' do #:id makes this a dynamic route
