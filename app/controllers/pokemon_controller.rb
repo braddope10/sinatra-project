@@ -4,4 +4,8 @@ class PokemonController < ApplicationController
         erb :'pokemon/new'
     end
 
+    post '/pokemon' do
+
+    end
+    
 end
