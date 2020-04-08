@@ -36,5 +36,11 @@ class PokemonController < ApplicationController
         if !Helpers.logged_in?(session) || !@pokemon || @pokemon.user != Helpers.current_user(session)
             redirect to '/'
         end
-        
+        erb :'/pokemon/edit'
+    end
+
+    patch '/pokemon/:id' do
+
+    end
+
 end
