@@ -1,5 +1,10 @@
 class PokemonController < ApplicationController
 
+    get '/pokemon' do
+        @pokemon = Pokemon.all 
+        erb :'pokemon/index'
+    end
+
     get '/pokemon/new' do
         erb :'pokemon/new'
     end
