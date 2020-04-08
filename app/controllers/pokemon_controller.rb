@@ -30,4 +30,11 @@ class PokemonController < ApplicationController
         end
         erb :'pokemon/show'
     end
+
+    get '/pokemon/:id/edit' do
+        @pokemon = Pokemon.find_by(id: params[:id])
+        if !Helpers.logged_in?(session) || !@pokemon || @pokemon.user != Helpers.current_user(session)
+            redirect to '/'
+        end
+        
 end
