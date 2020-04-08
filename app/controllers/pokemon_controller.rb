@@ -49,4 +49,8 @@ class PokemonController < ApplicationController
         end
     end
 
+    delete '/pokemon/:id/delete' do
+
+    end
+
 end
