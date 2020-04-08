@@ -50,7 +50,8 @@ class PokemonController < ApplicationController
     end
 
     delete '/pokemon/:id/delete' do
-
+        pokemon = Pokemon.find_by(id: params[:id])
+        
     end
 
 end
