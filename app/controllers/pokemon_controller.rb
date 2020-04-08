@@ -41,7 +41,12 @@ class PokemonController < ApplicationController
 
     patch '/pokemon/:id' do
         pokemon = Pokemon.find_by(id: params[:id])
-        
+        if pokemon && pokemon.user == Helper.current_user(session)
+            pokemon.update(params[:pokemon])
+            redirect to "/pokemon/#{pokemon.id}"
+        else
+            redirect to "/pokemon"
+        end
     end
 
 end
