@@ -21,7 +21,9 @@ class PokemonController < ApplicationController
     end
 
     get '/pokemon/:id' do
-        
-    end
+        if !Helpers.logged_in?(session)
+            redirect '/'    
+        end
+        @pokemon = Pokemon.find_by(id:params[:id])
 
 end
