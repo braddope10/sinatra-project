@@ -25,5 +25,9 @@ class PokemonController < ApplicationController
             redirect '/'    
         end
         @pokemon = Pokemon.find_by(id:params[:id])
-
+        if !@pokemon
+            redirect to '/'
+        end
+        erb :'pokemon/show'
+    end
 end
