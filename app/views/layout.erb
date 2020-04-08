@@ -19,7 +19,7 @@
         <p class="links"><a href="/logout" class="logout">Log Out</a></p>
         <p class="links"><a href="/users/<%=Helpers.current_user(session).id if Helpers.logged_in?(session)%>">My Pokemon</a></p>
         <p class="links"><a href="/pokemon/new">New Pokemon</a></p>
-        <p class="links"><a href="#">All Pokemon</a></p>
+        <p class="links"><a href="/pokemon">All Pokemon</a></p>
         <p class="links"><a href="/users">All Users</a></p>
       <% end %>
 
