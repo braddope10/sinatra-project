@@ -1,1 +1,13 @@
-<h3><
+<h3><%= @pokemon.name %></h3>
+
+<p><%= @pokemon.nickname %></p>
+<p><%= @pokemon.level %></p>
+
+
+<% if Helpers.current_user(session) == @pokemon.user %>
+  <a href="/pokemon/<%=@pokemon.id%>/edit">Edit Pokemon</a>
+  <form action="/pokemon/<%=@pokemon.id%>/delete" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+  </form>
+<%end%>
