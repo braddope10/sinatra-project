@@ -51,7 +51,10 @@ class PokemonController < ApplicationController
 
     delete '/pokemon/:id/delete' do
         pokemon = Pokemon.find_by(id: params[:id])
-        
+        if pokemon && pokemon.user == Helpers.current_user(session)
+            pokemon.destroy
+        end
+        redirect to '/pokemon'
     end
 
 end
