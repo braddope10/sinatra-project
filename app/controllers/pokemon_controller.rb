@@ -40,7 +40,8 @@ class PokemonController < ApplicationController
     end
 
     patch '/pokemon/:id' do
-
+        pokemon = Pokemon.find_by(id: params[:id])
+        
     end
 
 end
