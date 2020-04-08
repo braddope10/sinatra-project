@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-    has_many :pokemons
+    has_many :pokemon
 
     validates :username, presence: true, uniqueness: true
     validates :email,  presence: true, uniqueness: true

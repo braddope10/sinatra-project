@@ -48,6 +48,8 @@ class UsersController < ApplicationController
     get '/users/:id' do #:id makes this a dynamic route
         if Helpers.logged_in?(session) && User.find_by(id: params[:id])
             @user = User.find_by(id: params[:id])
+            @pokemon = @user.pokemon
+            
         else
             redirect to '/'
         end

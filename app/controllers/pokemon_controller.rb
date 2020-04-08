@@ -6,6 +6,9 @@ class PokemonController < ApplicationController
     end
 
     get '/pokemon/new' do
+        if !Helpers.logged_in?(sessions)
+            redirect to '/'
+        end
         erb :'pokemon/new'
     end
 
@@ -13,7 +16,12 @@ class PokemonController < ApplicationController
         pokemon = Pokemon.create(params)
         user = Helpers.current_user(session)
         pokemon.user = user
+        pokemon.save
         redirect to "/users/#{user.id}"
+    end
+
+    get '/pokemon/:id' do
+        
     end
 
 end
