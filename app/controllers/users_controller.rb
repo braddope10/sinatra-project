@@ -1,5 +1,14 @@
 class UsersController < ApplicationController
 
+    get '/users' do 
+        if Helpers.logged_in?(session)
+            @users = User.all
+        else
+            redirect to '/'
+        end
+        erb :'users/index'
+    end
+
     get '/signup' do
         if Helpers.logged_in?(session)
             user = Helpers.current_user(session)
@@ -37,12 +46,17 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id' do #:id makes this a dynamic route
-        if @user = User.find_by(id: params[:id])
+        if Helpers.logged_in?(session) && User.find_by(id: params[:id])
             @user = User.find_by(id: params[:id])
         else
             redirect to '/'
         end
         erb :'users/show'
+    end
+
+    get '/logout' do
+        session.clear
+        redirect to '/'
     end
 
 
